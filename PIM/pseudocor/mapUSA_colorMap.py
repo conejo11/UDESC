@@ -1,3 +1,5 @@
+# Gabriel Guebarra Conejo e Rafael Rizzatti
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
@@ -9,7 +11,7 @@ from pylab import *
 # -*- coding: cp1252 -*-
 from PIL import Image
 
-pil1=Image.open('mapaEUA.jpg')#('lenaShort.jpg')#(vermelho.jpg')#('mandril.jpg')#('lena.pgm')
+pil1=Image.open('mapaEUA.jpg')
 (l,h)=pil1.size
 print(l,h)
 
@@ -19,8 +21,8 @@ Iout=Image.new('RGB', (l,h))
 for j in range(0, h):
     for i in range(0, l):
         val=pil1.getpixel((i,j))
-        temp= cm.cubehelix(val) # << utilizando o mapa de cores gist_ncar
-        temp =(np.uint8(255*(np.asarray(temp[0:3])))) # valores mapeados sao normalizados e convertidos para inteiros
+        temp= cm.cubehelix(val) 
+        temp =(np.uint8(255*(np.asarray(temp[0:3])))) 
         Iout.putpixel((i,j),(temp[0],temp[1],temp[2]))
 
 
@@ -37,5 +39,5 @@ data = np.asarray(Iout)
 fig, ax = plt.subplots()
 cax = ax.imshow(data, interpolation='nearest', cmap=cm.cubehelix)
 cbar = fig.colorbar(cax, ticks=[0, 128, 255])
-cbar.ax.set_xticklabels(['Low', 'Medium', 'High'])  # horizontal colorbar
+cbar.ax.set_xticklabels(['Low', 'Medium', 'High'])
 plt.show()
