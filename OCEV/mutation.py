@@ -34,7 +34,7 @@ def deltaMutation(valorMat):
     u = valorMat + (random.uniform(var.bounds[0],var.bounds[1])/10)
     valorMat = u
   if prob == 1:
-    u = valorMat + (random.uniform(var.bounds[0],var.bounds[1])/10)
+    u = valorMat - (random.uniform(var.bounds[0],var.bounds[1])/10)
     valorMat = u
   return valorMat
 

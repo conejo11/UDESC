@@ -25,37 +25,18 @@ def uniformCrossover(matriz,pop,d,dad,mom):
       b = submatMom[i]
       submatDad[i] = b
       submatMom[i] = a
-  for i in range(d):
-    matriz[dad][i] = submatDad[i]
-    matriz[mom][i] = submatMom[i]
-  # print (submatDad)
-  # print (submatMom)
-  # print()
-  # printPopulacaoEFitness(matriz,pop,d)
-  return matriz
+  return submatDad,submatMom
 
 def onePointCrossover(matriz,pop,d,dad,mom):
-  submatDad = []
-  submatMom = []
-  for i in range(d):
-    submatDad.append(matriz[dad][i])
-    submatMom.append(matriz[mom][i])
-  cut = random.randint(0,(d-1))
-  # print(cut)
-  for i in range(d):
-    if i >= cut:
-      b = submatDad[i]
-      c = submatMom[i]
-      submatDad[i] = c
-      submatMom[i] = b
-  for i in range(d):
-    matriz[dad][i] = submatDad[i]
-    matriz[mom][i] = submatMom[i]
-  # print (submatDad)
-  # print (submatMom)
-  # print()
-  # printPopulacaoEFitness(matriz,pop,d)
-  return matriz
+  cut = random.randint(0,pop-1)
+  cut = random.randint(1,pop-1)    
+  head1 = matriz[dad][:cut]
+  head2 = matriz[mom][:cut]
+  tail1 = matriz[dad][cut:]
+  tail2 = matriz[mom][cut:]
+  son1 = head1+tail2
+  son2 = head2+tail1
+  return son1,son2
 
 # CROSSOVER REAL
 def blxReal(matriz,pop,d,dad,mom):
@@ -71,12 +52,7 @@ def blxReal(matriz,pop,d,dad,mom):
     submatDad[i] = u
     o = random.uniform((min(submatDad[i],submatMom[i])-(a*e)),(max(submatDad[i],submatMom[i])+(a*e)))
     submatMom[i] = o
-  for i in range(d):
-    matriz[dad][i] = submatDad[i]
-    matriz[mom][i] = submatMom[i]
-  # print (submatDad)
-  # print (submatMom)
-  return matriz
+  return submatDad,submatMom
 
 def uniformAverageReal(matriz,pop,d,dad,mom):
   submatDad = []
@@ -91,12 +67,7 @@ def uniformAverageReal(matriz,pop,d,dad,mom):
       submatDad[i] = average
     elif number == 1:
       submatMom[i] = average
-  for i in range(d):
-    matriz[dad][i] = submatDad[i]
-    matriz[mom][i] = submatMom[i]
-  # print (submatDad)
-  # print (submatMom)
-  return matriz   
+  return submatDad,submatMom
 
 # CROSSOVER PERMUTACAO
 def pmxPerm(matriz,pop,d,dad,mom):

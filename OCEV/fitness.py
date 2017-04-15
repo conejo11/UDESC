@@ -19,8 +19,8 @@ def bitsAlternados(matriz, pop, d):
       if(matriz[i][j] != matriz[i][j+1]):
         fitness = fitness + 1
     matriz[i].append(fitness)
+    matriz[i][d] = fitness
     fitness = 0
-  #printPopulacaoEFitness(matriz,pop,d)
   return matriz
 
 # PARES ALTERNADOS
@@ -32,7 +32,6 @@ def paresAlternados(matriz, pop,d):
         fitness = fitness + 1
     matriz[i].append(fitness)
     fitness = 0
-  # printPopulacaoEFitness(matriz,pop,d)
   return matriz
 
 # FUNCAO ALGEBRICA X^2
@@ -42,6 +41,6 @@ def maxFuncAlg(matriz, pop, d):
     for j in range(d):
       fitness = fitness + (matriz[i][j]**2)
     matriz[i].append(fitness)
+    matriz[i][d] = fitness
     fitness = 0
-  # printPopulacaoEFitness(matriz,pop,d)
   return matriz

@@ -35,6 +35,31 @@ def selectTournament(matriz,pop,d,k):
     if submat[z]>best:
        best = submat[z]
        j = z
-  #print(best)
-  #print(j)
   return(j)
+
+def elit(matriz,pop,d):
+  submat = []
+  best = -1
+  submat2 = []
+  index = -1
+  for i in range(d):
+    submat.append(matriz[i][d])
+  for i in range(d):
+    if submat[i] > best:
+      best = submat[i]
+      index = i
+  for i in range(d+1):
+    submat2.append(matriz[index][i])
+  return submat2
+
+def getWorst(matriz,pop,d):
+  submat = []
+  best = 90000
+  j = -1
+  for i in range(pop):
+    submat.append(matriz[i][d])
+  for i in range(d):
+    if submat[i] < best:
+      best = submat[i]
+      j = i
+  return j
