@@ -40,6 +40,8 @@ def main():
     objective = fit.paresAlternados(initPop,var.pop_size,var.d_size)
   if var.problem == 3:
     objective = fit.maxFuncAlg(initPop, var.pop_size, var.d_size)
+  if var.problem == 4:
+    objective = fit.radio(initPop, var.pop_size, var.d_size)
 
   while var.generations:
     if var.elitism:
@@ -92,10 +94,7 @@ def main():
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
     if var.elitism:
-      if type(var.cod) is bool :
-        randIndex = ns.getWorst(newGen,var.pop_size,var.d_size)
-      else:
-        randIndex = 0
+      randIndex = 0
       newPopu[randIndex] = elected
 
     if var.problem == 1:
@@ -104,7 +103,8 @@ def main():
       objective = fit.paresAlternados(newPopu,var.pop_size,var.d_size)
     if var.problem == 3:
       objective = fit.maxFuncAlg(newPopu, var.pop_size, var.d_size)
-
+    if var.problem == 4:
+      objective = fit.radio(newPopu, var.pop_size, var.d_size)
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))
@@ -118,14 +118,14 @@ def main():
   plt.plot(bestFit,label = 'Best')
   plt.plot(averageFit, label = 'Average')
   plt.legend()
-  plt.ylabel('Individuals')
+  plt.ylabel('Fitness')
   plt.xlabel('Generations')
   plt.savefig("best_average.png")
 
   plt.clf()
   plt.plot(divers,label = 'Diversity')
   plt.legend()
-  plt.ylabel('Individuals')
+  plt.ylabel('Diversity')
   plt.xlabel('Generations')
   plt.savefig("diversity.png")
   print(best)

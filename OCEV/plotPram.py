@@ -62,11 +62,11 @@ def diversityMeasure(matriz,pop,d):
       for d in range(1,d,1):
         aux1 += mt.fabs(matriz[a][d] - matriz[b][d])**2
       aux1 = copy.copy(mt.sqrt(aux1))
-      print(d)
+    #   print(d)
       aux1 = copy.copy(aux1/d)
       if (b == (a+1) or aux2 > aux1):
         aux2 = copy.copy(aux1)
     diversity += mt.log1p(aux2)
   if m_nmdf < diversity:
     m_nmdf = diversity
-  return diversity/m_nmdf 
+  return diversity/m_nmdf

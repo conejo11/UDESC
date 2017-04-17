@@ -62,14 +62,24 @@ def radio(matriz,pop,d):
   for i in range(pop):
     for j in range(d):
       submat1.append(matriz[i][j])
-  for i in range(pop):
-      submat2.append(submat1[:cut])
-      submat3.append(submat1[cut:])
-      str1 = ''.join(str(e) for e in submat2)
-      str2 = ''.join(str(e) for e in submat3)
-      convst = int(str1,2)
-      convlx = int(str2,2)
-  pass
+    submat2 = submat1[:cut]
+    submat3 = submat1[cut:]
+    str1 = ''.join(str(e) for e in submat2)
+    str2 = ''.join(str(e) for e in submat3)
+    new = int(str2,2)
+    new2 = int(str1,2)
+    max_bit = 2 ** 5 - 1
+    convst = (0.0+(24.0 / max_bit)) * new2 #
+    convlx = (0.0+(16.0 / max_bit)) * new
+    fit = ((30.0*convst + 40.0*convlx)/1360.0) - max(0.0,(convst + 2.0 * convlx - 40.0)/16.0)
+    matriz[i].append(fit)
+    submat1 = []
+    submat2 = []
+    submat3 = []
+    fit = 0.0
+  return matriz
+
+
 
 
 def pattern(matriz,pop,d):

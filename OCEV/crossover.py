@@ -30,7 +30,7 @@ def uniformCrossover(matriz,pop,d,dad,mom):
 
 def onePointCrossover(matriz,pop,d,dad,mom):
   cut = random.randint(0,pop-1)
-  cut = random.randint(1,pop-1)    
+  cut = random.randint(1,pop-1)
   head1 = matriz[dad][:cut]
   head2 = matriz[mom][:cut]
   tail1 = matriz[dad][cut:]
@@ -77,7 +77,6 @@ def pmxPerm(matriz,pop,d,dad,mom):
   for i in range(d):
     submatDad.append(matriz[dad][i])
     submatMom.append(matriz[mom][i]) 
-
   size = len(submatMom)
   points = random.sample(range(size), 2)
   x,y = min(points), max(points)
