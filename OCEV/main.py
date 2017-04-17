@@ -70,8 +70,10 @@ def main():
           child1,child2 = crs.uniformAverageReal(objective,var.pop_size,var.d_size,dad,mom)
           newGen.append(child1)
           newGen.append(child2)
-        # elif cover == 5:
-        #   offspring = 
+        elif var.cover == 5:
+          child1,child2 = crs.pmxPerm(objective,var.pop_size,var.d_size,dad,mom)
+          newGen.append(child1)
+          newGen.append(child2)
 
     for i in range(var.pop_size):
       for j in range(var.d_size):

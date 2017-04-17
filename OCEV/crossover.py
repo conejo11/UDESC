@@ -1,7 +1,8 @@
 import random
 import math as mt
 import variaveis as var
-
+import copy
+import functools
 # PROBABILIDADE CROSSOVER
 def cross():
   x = 1.0
@@ -76,6 +77,19 @@ def pmxPerm(matriz,pop,d,dad,mom):
   for i in range(d):
     submatDad.append(matriz[dad][i])
     submatMom.append(matriz[mom][i]) 
-  cut1 = random.randint(0,(d-1))
-  cut2 = random.randint(0,(d-1))
-  pass
+
+  size = len(submatMom)
+  points = random.sample(range(size), 2)
+  x,y = min(points), max(points)
+  bro = copy.copy(submatDad)
+  bro[x:y+1] = submatMom[x:y+1]
+  sis = copy.copy(submatMom)
+  sis[x:y+1] = submatDad[x:y+1]
+  for parent,child in zip([submatDad,submatMom], [bro,sis]):
+    for i in range(x,y+1):
+      if parent[i] not in child[x:y+1]:
+        spot = i
+        while x<=spot<=y:
+          spot = parent.index(child[spot])
+        child[spot] = parent[i]
+  return bro,sis

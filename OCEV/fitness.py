@@ -1,6 +1,7 @@
 import random
 import math as mt
 import variaveis as var
+import string
 
 # PRINTAR MATRIZ POPULACIONAL
 def printPopulacaoEFitness(matriz, pop,d):
@@ -34,7 +35,7 @@ def paresAlternados(matriz, pop,d):
     fitness = 0
   return matriz
 
-# FUNCAO ALGEBRICA X^2
+# FUNCAO ALGEBRICA X^2 -- SPHERE
 def maxFuncAlg(matriz, pop, d):
   fitness = 0.0
   gt = []
@@ -54,7 +55,22 @@ def maxFuncAlg(matriz, pop, d):
   return matriz
 
 def radio(matriz,pop,d):
+  cut = 5
+  submat1 = []
+  submat2 = []
+  submat3 = []
+  for i in range(pop):
+    for j in range(d):
+      submat1.append(matriz[i][j])
+  for i in range(pop):
+      submat2.append(submat1[:cut])
+      submat3.append(submat1[cut:])
+      str1 = ''.join(str(e) for e in submat2)
+      str2 = ''.join(str(e) for e in submat3)
+      convst = int(str1,2)
+      convlx = int(str2,2)
   pass
+
 
 def pattern(matriz,pop,d):
   pass
