@@ -9,6 +9,7 @@ import fitness as fit
 import mutation as mtt
 import variaveis as var
 import plotPram as pp
+import copy
 
 def printPopulacao(matriz, pop,d):
   for i in range(pop):
@@ -42,6 +43,8 @@ def main():
     objective = fit.maxFuncAlg(initPop, var.pop_size, var.d_size)
   if var.problem == 4:
     objective = fit.radio(initPop, var.pop_size, var.d_size)
+  if var.problem == 5:
+    objective = fit.pattern(initPop, var.pop_size, var.d_size)
 
   while var.generations:
     if var.elitism:
@@ -95,7 +98,7 @@ def main():
     newPopu = newPop(newGen,var.pop_size,var.d_size)
     if var.elitism:
       randIndex = 0
-      newPopu[randIndex] = elected
+      newPopu[randIndex] = copy.copy(elected)
 
     if var.problem == 1:
       objective = fit.bitsAlternados(newPopu,var.pop_size,var.d_size)
@@ -105,13 +108,16 @@ def main():
       objective = fit.maxFuncAlg(newPopu, var.pop_size, var.d_size)
     if var.problem == 4:
       objective = fit.radio(newPopu, var.pop_size, var.d_size)
+    if var.problem == 5:
+      objective = fit.pattern(newPopu, var.pop_size, var.d_size)
+
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))
     if type(var.cod) is not float:
       divers.append(pp.diversityHam(objective,var.pop_size,var.d_size))
-    else:
-      divers.append(pp.diversityMeasure(objective,var.pop_size,var.d_size))
+    # else:
+    #   divers.append(pp.diversityMeasure(objective,var.pop_size,var.d_size))
     var.generations -= 1
 
   best = pp.bestInd(objective,var.pop_size,var.d_size)
@@ -128,6 +134,7 @@ def main():
   plt.ylabel('Diversity')
   plt.xlabel('Generations')
   plt.savefig("diversity.png")
+  
   print(best)
 
 main()

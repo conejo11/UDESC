@@ -23,6 +23,25 @@ def selectRoulette(matriz, pop, d):
     if current > compare:
       return i 
 
+# def selectRoulette(matriz, pop, d):
+#   submat = []
+#   submat2 = []
+#   summ = 0
+#   for i in range(pop):
+#     submat.append(matriz[i][d])
+#   for i in range(pop):
+#     summ = summ + submat[i]
+#   for i in range(pop):
+#     submat2.append(submat[i]/summ)
+#   y = random.random()
+#   i = 0 
+#   while True:
+#     if y<submat2[i]:
+#       return i
+#     else:
+#       y = y-submat2[i]
+#       i = i+1
+
 # selecao torneio
 def selectTournament(matriz,pop,d,k):
   best = -1

@@ -81,6 +81,17 @@ def radio(matriz,pop,d):
 
 
 
-
 def pattern(matriz,pop,d):
-  pass
+  fitness = 0
+  submat = []
+  compare = [[1,0,1,1,1,1],[1,0,1,0,0,1],[1,0,1,0,1,1],[1,1,1,1,0,1],[1,0,0,0,1,1],[1,1,1,1,0,1]]
+  subCompare = []
+  for i in range(pop):
+    for j in range(d):
+      if matriz[i][j] == compare[i][j]:
+        fitness += 1
+    matriz[i].append(fitness)
+    print(matriz[i])
+    matriz[i][d] = fitness
+    fitness = 0
+  return matriz
