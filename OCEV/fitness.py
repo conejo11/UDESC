@@ -36,11 +36,25 @@ def paresAlternados(matriz, pop,d):
 
 # FUNCAO ALGEBRICA X^2
 def maxFuncAlg(matriz, pop, d):
-  fitness = 0
+  fitness = 0.0
+  gt = []
   for i in range(pop):
     for j in range(d):
       fitness = fitness + (matriz[i][j]**2)
-    matriz[i].append(fitness)
-    matriz[i][d] = fitness
-    fitness = 0
+    gt.append(fitness)
+    # matriz[i].append(fitness)
+    # matriz[i][d] = fitness
+    fitness = 0.0
+  for i in range(pop):
+    fit = gt[i]
+    fit = fit/max(gt)
+    newFt = (1.0 - fit)
+    matriz[i].append(newFt)
+    matriz[i][d] = newFt
   return matriz
+
+def radio(matriz,pop,d):
+  pass
+
+def pattern(matriz,pop,d):
+  pass

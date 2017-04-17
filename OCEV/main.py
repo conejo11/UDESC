@@ -30,6 +30,8 @@ def main():
   aux = []
   bestFit = []
   averageFit = []
+  divers = []
+  divers1 = 0
   worst = 0
 
   if var.problem == 1:
@@ -88,7 +90,10 @@ def main():
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
     if var.elitism:
-      randIndex = ns.getWorst(newGen,var.pop_size,var.d_size)
+      if type(var.cod) is bool :
+        randIndex = ns.getWorst(newGen,var.pop_size,var.d_size)
+      else:
+        randIndex = 0
       newPopu[randIndex] = elected
 
     if var.problem == 1:
@@ -98,8 +103,13 @@ def main():
     if var.problem == 3:
       objective = fit.maxFuncAlg(newPopu, var.pop_size, var.d_size)
 
+
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))
+    if type(var.cod) is not float:
+      divers.append(pp.diversityHam(objective,var.pop_size,var.d_size))
+    else:
+      divers.append(pp.diversityMeasure(objective,var.pop_size,var.d_size))
     var.generations -= 1
 
   best = pp.bestInd(objective,var.pop_size,var.d_size)
@@ -108,8 +118,14 @@ def main():
   plt.legend()
   plt.ylabel('Individuals')
   plt.xlabel('Generations')
-
-  print(best)
   plt.savefig("best_average.png")
+
+  plt.clf()
+  plt.plot(divers,label = 'Diversity')
+  plt.legend()
+  plt.ylabel('Individuals')
+  plt.xlabel('Generations')
+  plt.savefig("diversity.png")
+  print(best)
 
 main()
