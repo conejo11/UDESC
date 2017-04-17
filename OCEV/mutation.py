@@ -26,7 +26,6 @@ def randMutation(valorMat,d):
   valorMat = ran
   return valorMat
 
-
 # REAL
 def deltaMutation(valorMat):
   prob = random.choice([0,1])
@@ -48,8 +47,6 @@ def gaussianMutation(valorMat):
   y1 = mt.sqrt(-2.0 * mt.log(x1)) * mt.cos(2.0 * mt.pi * x2)
   final = y1 * 0.1 + valorMat
   valorMat = final
-
-
   return valorMat
 
 # PERMUTACAO

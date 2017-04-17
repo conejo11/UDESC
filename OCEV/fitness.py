@@ -41,17 +41,14 @@ def sphere(matriz, pop, d):
   gt = []
   for i in range(pop):
     for j in range(d):
-      fitness = fitness + (matriz[i][j]**2)
+      fitness = fitness + (matriz[i][j]*matriz[i][j])
     gt.append(fitness)
-    # matriz[i].append(fitness)
-    # matriz[i][d] = fitness
     fitness = 0.0
   for i in range(pop):
-    fit = gt[i]
-    fit = fit/max(gt)
-    newFt = (1.0 - fit)
-    matriz[i].append(newFt)
-    matriz[i][d] = newFt
+    # print(gt)
+    fit = 1.0-(gt[i]/max(gt))
+    matriz[i].append(fit)
+    matriz[i][d] = fit
   return matriz
 
 # Radio Factory

@@ -3,12 +3,12 @@ import math as mt
 
 generations = 250
 k = 2
-pop_size = 10
-d_size = 10
+pop_size = 50
+d_size = 5
 bounds = [-50,50]
 
-elitism = True
-# elitism = False
+# elitism = True
+elitism = False
 
 # 1 = Roullette, 2 = Tournament
 # selection = 1

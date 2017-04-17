@@ -96,7 +96,7 @@ def main():
             newGen = aux
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
-    print (elected)
+    # print (elected)
     if var.elitism:
       randIndex = random.randint(0,(var.d_size-1))
       newPopu[randIndex] = elected
