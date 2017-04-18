@@ -36,7 +36,7 @@ def paresAlternados(matriz, pop,d):
   return matriz
 
 # FUNCAO ALGEBRICA X^2 -- SPHERE
-def maxFuncAlg(matriz, pop, d):
+def sphere(matriz, pop, d):
   fitness = 0.0
   gt = []
   for i in range(pop):

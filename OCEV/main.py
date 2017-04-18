@@ -40,7 +40,7 @@ def main():
   if var.problem == 2:
     objective = fit.paresAlternados(initPop,var.pop_size,var.d_size)
   if var.problem == 3:
-    objective = fit.maxFuncAlg(initPop, var.pop_size, var.d_size)
+    objective = fit.sphere(initPop, var.pop_size, var.d_size)
   if var.problem == 4:
     objective = fit.radio(initPop, var.pop_size, var.d_size)
   if var.problem == 5:
@@ -96,16 +96,17 @@ def main():
             newGen = aux
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
+    print (elected)
     if var.elitism:
       randIndex = random.randint(0,(var.d_size-1))
-      newPopu[randIndex] = copy.copy(elected)
+      newPopu[randIndex] = elected
 
     if var.problem == 1:
       objective = fit.bitsAlternados(newPopu,var.pop_size,var.d_size)
     if var.problem == 2:
       objective = fit.paresAlternados(newPopu,var.pop_size,var.d_size)
     if var.problem == 3:
-      objective = fit.maxFuncAlg(newPopu, var.pop_size, var.d_size)
+      objective = fit.sphere(newPopu, var.pop_size, var.d_size)
     if var.problem == 4:
       objective = fit.radio(newPopu, var.pop_size, var.d_size)
     if var.problem == 5:

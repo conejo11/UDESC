@@ -46,8 +46,10 @@ def gaussianMutation(valorMat):
   if x2 == 0:
     x2 = 1
   y1 = mt.sqrt(-2.0 * mt.log(x1)) * mt.cos(2.0 * mt.pi * x2)
-  final = y1 * .1 + valorMat
+  final = y1 * 0.1 + valorMat
   valorMat = final
+
+
   return valorMat
 
 # PERMUTACAO
