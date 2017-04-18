@@ -54,6 +54,7 @@ def maxFuncAlg(matriz, pop, d):
     matriz[i][d] = newFt
   return matriz
 
+# Radio Factory
 def radio(matriz,pop,d):
   cut = 5
   submat1 = []
@@ -80,7 +81,7 @@ def radio(matriz,pop,d):
   return matriz
 
 
-
+# Graphic Pattern
 def pattern(matriz,pop,d):
   fitness = 0
   submat = []

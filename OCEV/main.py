@@ -97,7 +97,7 @@ def main():
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
     if var.elitism:
-      randIndex = 0
+      randIndex = random.randint(0,(var.d_size-1))
       newPopu[randIndex] = copy.copy(elected)
 
     if var.problem == 1:
@@ -116,8 +116,8 @@ def main():
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))
     if type(var.cod) is not float:
       divers.append(pp.diversityHam(objective,var.pop_size,var.d_size))
-    # else:
-    #   divers.append(pp.diversityMeasure(objective,var.pop_size,var.d_size))
+    else:
+      divers.append(pp.diversityMeasure(objective,var.pop_size,var.d_size))
     var.generations -= 1
 
   best = pp.bestInd(objective,var.pop_size,var.d_size)

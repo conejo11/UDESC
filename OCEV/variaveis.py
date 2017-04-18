@@ -1,7 +1,7 @@
 import random
 import math as mt
 
-generations = 250
+generations = 100
 k = 2
 pop_size = 50
 d_size = 5
@@ -36,6 +36,6 @@ mutar = 3
 # mutar = 5
 
 
-# cod = 0
-cod = 0.0
+cod = 0
+# cod = 0.0
 # cod = False

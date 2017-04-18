@@ -59,8 +59,8 @@ def diversityMeasure(matriz,pop,d):
   for a in range(0,pop,1):
     for b in range(a+1,pop,1):
       aux1 = 0.0
-      for d in range(1,d,1):
-        aux1 += mt.fabs(matriz[a][d] - matriz[b][d])**2
+      for c in range(0,d,1):
+        aux1 += mt.fabs(matriz[a][c] - matriz[b][c])**2
       aux1 = copy.copy(mt.sqrt(aux1))
     #   print(d)
       aux1 = copy.copy(aux1/d)

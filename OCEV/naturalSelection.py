@@ -67,7 +67,7 @@ def elit(matriz,pop,d):
     if submat[i] > best:
       best = submat[i]
       index = i
-  for i in range(d+1):
+  for i in range(d):
     submat2.append(matriz[index][i])
   return submat2
 
