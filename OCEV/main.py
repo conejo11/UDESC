@@ -137,4 +137,5 @@ def main():
   
   print(best)
 
-main()
+if  __name__ =='__main__':
+  main()
