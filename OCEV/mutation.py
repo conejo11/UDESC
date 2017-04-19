@@ -28,11 +28,11 @@ def randMutation(valorMat,d):
 
 # REAL
 def deltaMutation(valorMat):
-  prob = random.choice([0,1])
-  if prob == 0:
+  prob = random.random()
+  if prob > 0.5:
     u = valorMat + (random.uniform(var.bounds[0],var.bounds[1])/10)
     valorMat = u
-  if prob == 1:
+  else:
     u = valorMat - (random.uniform(var.bounds[0],var.bounds[1])/10)
     valorMat = u
   return valorMat
@@ -40,12 +40,12 @@ def deltaMutation(valorMat):
 def gaussianMutation(valorMat):
   x1 = random.random()
   x2 = random.random()
-  if x1 == 0:
-    x1 = 1
-  if x2 == 0:
-    x2 = 1
-  y1 = mt.sqrt(-2.0 * mt.log(x1)) * mt.cos(2.0 * mt.pi * x2)
-  final = y1 * 0.1 + valorMat
+  # if x1 == 0:
+  #   x1 = 1
+  # if x2 == 0:
+  #   x2 = 1
+  y1 = mt.sqrt(-2 * mt.log(x1)) * mt.cos(2* mt.pi * x2)
+  final = valorMat + y1 * 0.1
   valorMat = final
   return valorMat
 

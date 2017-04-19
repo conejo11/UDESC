@@ -5,7 +5,7 @@ import copy
 import functools
 # PROBABILIDADE CROSSOVER
 def cross():
-  x = 1.0
+  x = 0.94
   y = random.random()
   if x > y:
     return True

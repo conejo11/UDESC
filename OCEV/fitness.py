@@ -50,6 +50,7 @@ def sphere(matriz, pop, d):
     matriz[i].append(fit)
     matriz[i][d] = fit
   return matriz
+#[2.7960818759387046e-07, 4.1657296873112263e-07, -1.613529196878329e-05, 2.5321693958119714e-06, -3.918788553636807e-06]
 
 # Radio Factory
 def radio(matriz,pop,d):
