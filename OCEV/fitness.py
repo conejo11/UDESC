@@ -96,3 +96,8 @@ def pattern(matriz,pop,d):
     matriz[i][d] = fitness
     fitness = 0
   return matriz
+
+# N - Queens
+def queens(matriz,pop,d):
+  fitness = 0
+  

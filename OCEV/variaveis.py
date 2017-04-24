@@ -14,12 +14,13 @@ elitism = True
 # selection = 1
 selection = 2
 
-# 1 = bitsAlternados, 2 = Pares Alternados, 3 = sphere min , 4 = Radio, 5 = padrao grafico
+# 1 = Bits Alternados, 2 = Pares Alternados, 3 = sphere min , 4 = Radio, 5 = Graphic Pattern, 6 = N - Queens
 # problem = 1
 # problem = 2
 # problem = 3
 problem = 4
 # problem = 5
+# problem = 6
 
 # 1 = onePoint; 2 = Uniform; 3 = BLX; 4 = Average; 5 = PLX
 cover = 1
