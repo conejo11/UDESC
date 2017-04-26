@@ -45,6 +45,8 @@ def main():
     objective = fit.radio(initPop, var.pop_size, var.d_size)
   if var.problem == 5:
     objective = fit.pattern(initPop, var.pop_size, var.d_size)
+  if var.problem == 6:
+    objective = fit.nQueens(initPop, var.pop_size, var.d_size)
 
   while var.generations:
     if var.elitism:
@@ -111,6 +113,8 @@ def main():
       objective = fit.radio(newPopu, var.pop_size, var.d_size)
     if var.problem == 5:
       objective = fit.pattern(newPopu, var.pop_size, var.d_size)
+    if var.problem == 6:
+      objective = fit.nQueens(initPop, var.pop_size, var.d_size)
 
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
@@ -135,7 +139,7 @@ def main():
   plt.ylabel('Diversity')
   plt.xlabel('Generations')
   plt.savefig("diversity.png")
-  
+
   print(best)
 
 if  __name__ =='__main__':

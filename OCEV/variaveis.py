@@ -4,7 +4,7 @@ import math as mt
 generations = 250
 k = 2
 pop_size = 100
-d_size = 10
+d_size = 8
 bounds = [-50,50]
 
 elitism = True
@@ -18,25 +18,25 @@ selection = 2
 # problem = 1
 # problem = 2
 # problem = 3
-problem = 4
+# problem = 4
 # problem = 5
-# problem = 6
+problem = 6
 
 # 1 = onePoint; 2 = Uniform; 3 = BLX; 4 = Average; 5 = PLX
-cover = 1
+# cover = 1
 # cover = 2
 # cover = 3
 # cover = 4
-# cover = 5
+cover = 5
 
 # 1 = bitFlip; 2 = randMutation; 3 = deltaMutation; 4 = gaussianMutation; 5 = swapPositions
-mutar = 1
+# mutar = 1
 # mutar = 2
 # mutar = 3
 # mutar = 4
-# mutar = 5
+mutar = 5
 
 
-# cod = 0
+cod = 0
 # cod = 0.0
-cod = False
+# cod = False

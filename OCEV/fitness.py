@@ -100,10 +100,13 @@ def pattern(matriz,pop,d):
 # N - Queens (arrumar)
 def nQueens(matriz,pop,d):
   fitness = 0
+  colision = 0
   for i in range(pop):
     for j in range(d - 1):
-      if abs(matriz[i][j] - (matriz[i][j-1])) != abs(j - (j-1)):
-        fitness = fitness + 1
+      for k in range((j+1),d):
+          if abs(matriz[i][j] - (matriz[i][j-1])) == abs(j - (j-1)):
+            colision += 1
+    fitness = colision/d
     matriz[i].append(fitness)
     fitness = 0
   return matriz
