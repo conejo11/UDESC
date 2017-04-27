@@ -4,7 +4,7 @@ import math as mt
 generations = 250
 k = 2
 pop_size = 100
-d_size = 8
+d_size = 64
 bounds = [-50,50]
 
 elitism = True

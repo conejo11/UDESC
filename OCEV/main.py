@@ -114,7 +114,7 @@ def main():
     if var.problem == 5:
       objective = fit.pattern(newPopu, var.pop_size, var.d_size)
     if var.problem == 6:
-      objective = fit.nQueens(initPop, var.pop_size, var.d_size)
+      objective = fit.nQueens(newPopu, var.pop_size, var.d_size)
 
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))

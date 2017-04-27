@@ -99,14 +99,24 @@ def pattern(matriz,pop,d):
 
 # N - Queens (arrumar)
 def nQueens(matriz,pop,d):
-  fitness = 0
-  colision = 0
+  fitness = 0.0
+  collision = 0.0
+  submat = []
   for i in range(pop):
     for j in range(d - 1):
       for k in range((j+1),d):
-          if abs(matriz[i][j] - (matriz[i][j-1])) == abs(j - (j-1)):
-            colision += 1
-    fitness = colision/d
+        if abs(matriz[i][j] - matriz[i][k]) == abs(k - j):
+          collision += 1.0
+      # submat.append(matriz[i][j])
+    # for k in range(d-1):
+    #   for l in range((i+1),d):
+    #     if abs(submat[k] - submat[l]) == abs(l - k):
+    #       collision += 1.0
+    fitness = 1.0 - (collision/d)
     matriz[i].append(fitness)
-    fitness = 0
+    submat = []
+    fitness = 0.0
+    collision = 0.0
+  # printPopulacaoEFitness(matriz,pop,d)
   return matriz
+
