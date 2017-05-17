@@ -34,6 +34,8 @@ def main():
   divers = []
   divers1 = 0
   worst = 0
+  ce = 1.2
+  inc = 0.8/var.generations
 
   if var.problem == 1:
     objective = fit.bitsAlternados(initPop,var.pop_size,var.d_size)
@@ -55,11 +57,17 @@ def main():
     newGen = []
     while len(newGen)!= var.pop_size:
       if var.selection == 1:
-        dad = ns.selectRoulette(objective,var.pop_size,var.d_size)
-        mom = ns.selectRoulette(objective,var.pop_size,var.d_size)
+        if var.linearScaling == True:
+          dad = ns.selectRouletteLinearScaling(objective,var.pop_size,var.d_size,ce)
+          mom = ns.selectRouletteLinearScaling(objective,var.pop_size,var.d_size,ce)
+          ce += inc
+        else:
+          dad = ns.selectRoulette(objective,var.pop_size,var.d_size)
+          mom = ns.selectRoulette(objective,var.pop_size,var.d_size)
       elif var.selection == 2:
         dad = ns.selectTournament(objective,var.pop_size,var.d_size,var.k)
         mom = ns.selectTournament(objective,var.pop_size,var.d_size,var.k)
+        
       if crs.cross():
         if var.cover == 1:
           child1,child2 = crs.onePointCrossover(objective,var.pop_size,var.d_size,dad,mom)

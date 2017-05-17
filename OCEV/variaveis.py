@@ -1,9 +1,9 @@
 import random
 import math as mt
 
-generations = 250
-k = 2
-pop_size = 100
+generations = 1000
+k = 5
+pop_size = 70
 d_size = 64
 bounds = [-50,50]
 
@@ -14,6 +14,10 @@ elitism = True
 # selection = 1
 selection = 2
 
+# Linear Scaling
+linearScaling = True
+# linearScaling = False
+
 # 1 = Bits Alternados, 2 = Pares Alternados, 3 = sphere min , 4 = Radio, 5 = Graphic Pattern, 6 = N - Queens
 # problem = 1
 # problem = 2
@@ -22,7 +26,7 @@ selection = 2
 # problem = 5
 problem = 6
 
-# 1 = onePoint; 2 = Uniform; 3 = BLX; 4 = Average; 5 = PLX
+# 1 = onePoint; 2 = Uniform; 3 = BLX; 4 = Average; 5 = PMX
 # cover = 1
 # cover = 2
 # cover = 3

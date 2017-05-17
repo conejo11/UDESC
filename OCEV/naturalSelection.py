@@ -1,9 +1,47 @@
 import random
 import math as mt
 import variaveis as var
+import functools
 
 # SELECAO NATURAL
 # Selecao Roleta
+def selectRouletteLinearScaling(matriz,pop,d,ce):
+  matfit=[]
+  newFit=[]
+  relativeFit=[]
+  for i in range(pop):
+    matfit.append(matriz[i][d])
+  minFit=99999
+  maxFit=0
+  avgFit=0
+  fitsom=0
+  for i in range(pop):
+    if(matfit[i]>maxFit):
+      maxFit=matfit[i]
+    if(matfit[i]<minFit):
+      minFit=matfit[i]
+    fitsom=fitsom+matfit[i]
+  avgFit=fitsom/pop
+  alpha=0
+  beta=0
+  if(minFit>(ce*avgFit-maxFit/(ce-1))):
+    alpha=(avgFit*(ce-1))/(maxFit-avgFit)
+    beta=(avgFit*(maxFit-ce*avgFit))/(maxFit-avgFit)
+  else:
+    alpha=avgFit/(avgFit-minFit)
+    beta=(-minFit*avgFit)/(avgFit-minFit)
+  for i in range(pop):
+    meufit=matfit[i]
+    novofit=meufit*alpha+beta
+    newFit.append(novofit)
+    if(i>=1):
+      relativeFit.append((novofit/fitsom)+relativeFit[i-1])
+    else:
+      relativeFit.append(novofit/fitsom)
+  num = random.random()
+  for i in range(pop):
+    if(relativeFit[i]>num):
+      return i
 
 def selectRoulette(matriz, pop, d):
   submat = []
@@ -22,25 +60,6 @@ def selectRoulette(matriz, pop, d):
     current += submat[i]
     if current > compare:
       return i 
-
-# def selectRoulette(matriz, pop, d):
-#   submat = []
-#   submat2 = []
-#   summ = 0
-#   for i in range(pop):
-#     submat.append(matriz[i][d])
-#   for i in range(pop):
-#     summ = summ + submat[i]
-#   for i in range(pop):
-#     submat2.append(submat[i]/summ)
-#   y = random.random()
-#   i = 0 
-#   while True:
-#     if y<submat2[i]:
-#       return i
-#     else:
-#       y = y-submat2[i]
-#       i = i+1
 
 # selecao torneio
 def selectTournament(matriz,pop,d,k):

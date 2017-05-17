@@ -107,16 +107,11 @@ def nQueens(matriz,pop,d):
       for k in range((j+1),d):
         if abs(matriz[i][j] - matriz[i][k]) == abs(k - j):
           collision += 1.0
-      # submat.append(matriz[i][j])
-    # for k in range(d-1):
-    #   for l in range((i+1),d):
-    #     if abs(submat[k] - submat[l]) == abs(l - k):
-    #       collision += 1.0
     fitness = 1.0 - (collision/d)
     matriz[i].append(fitness)
     submat = []
     fitness = 0.0
     collision = 0.0
-  # printPopulacaoEFitness(matriz,pop,d)
   return matriz
 
+# 

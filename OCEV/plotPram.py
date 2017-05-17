@@ -12,7 +12,6 @@ def getBest(matriz,pop,d):
   for i in range(d):
     if submat[i] > best:
       best = submat[i]
-      # print(best) 
   return best
 
 def averageInd(matriz,pop,d):
