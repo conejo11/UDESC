@@ -24,7 +24,7 @@ def newPop(matriz,pop,d):
   return popula
 
 # FUNCAO MAIN
-def main():
+if  __name__ =='__main__':
   initPop = rp.randomPopulation(var.cod,var.pop_size,var.d_size,var.bounds)
   objective = initPop
   offspring = []
@@ -106,7 +106,7 @@ def main():
             newGen = aux
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
-    # print (elected)
+
     if var.elitism:
       randIndex = random.randint(0,(var.d_size-1))
       newPopu[randIndex] = elected
@@ -149,6 +149,3 @@ def main():
   plt.savefig("diversity.png")
 
   print(best)
-
-if  __name__ =='__main__':
-  main()

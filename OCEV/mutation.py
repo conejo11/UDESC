@@ -40,10 +40,6 @@ def deltaMutation(valorMat):
 def gaussianMutation(valorMat):
   x1 = random.random()
   x2 = random.random()
-  # if x1 == 0:
-  #   x1 = 1
-  # if x2 == 0:
-  #   x2 = 1
   y1 = mt.sqrt(-2 * mt.log(x1)) * mt.cos(2* mt.pi * x2)
   final = valorMat + y1 * 0.1
   valorMat = final
