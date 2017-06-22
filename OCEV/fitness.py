@@ -2,6 +2,7 @@ import random
 import math as mt
 import variaveis as var
 import string
+import functools as ft
 
 # PRINTAR MATRIZ POPULACIONAL
 def printPopulacaoEFitness(matriz, pop,d):
@@ -9,7 +10,6 @@ def printPopulacaoEFitness(matriz, pop,d):
     for j in range(d+1):
       print (matriz[i][j], end=" ")
     print()
-
 
 # FUNCOES DE FITNESS
 # BITS ALTERNADOS
@@ -50,7 +50,6 @@ def sphere(matriz, pop, d):
     matriz[i].append(fit)
     matriz[i][d] = fit
   return matriz
-#[2.7960818759387046e-07, 4.1657296873112263e-07, -1.613529196878329e-05, 2.5321693958119714e-06, -3.918788553636807e-06] 10000 iterations
 
 # Radio Factory
 def radio(matriz,pop,d):
@@ -78,7 +77,6 @@ def radio(matriz,pop,d):
     fit = 0.0
   return matriz
 
-
 # Graphic Pattern
 def pattern(matriz,pop,d):
   fitness = 0
@@ -97,7 +95,7 @@ def pattern(matriz,pop,d):
     fitness = 0
   return matriz
 
-# N - Queens (arrumar)
+# N - Queens
 def nQueens(matriz,pop,d):
   fitness = 0.0
   collision = 0.0
@@ -114,4 +112,62 @@ def nQueens(matriz,pop,d):
     collision = 0.0
   return matriz
 
-# 
+# DECEPTIVE FUNCTIONS
+f3_size = 10
+deceptiveN_size = 20
+deceptiveN_nbits = 3
+
+def evalF3(vet):
+  if   vet==[0,0,0]:
+    return 28
+  elif vet==[0,0,1]:
+    return 26
+  elif vet==[0,1,0]:
+    return 22
+  elif vet==[1,0,0]:
+    return 14
+  elif vet==[1,1,1]:
+    return 30
+  else:
+    return 0
+  return 0
+
+# F3
+def f3(matriz,pop,d):
+  for i in range(pop):
+    fitness = 0.0
+    gens = []
+    gens = [j for j in matriz[i]]
+    for k in range(f3_size):
+      fitness += evalF3(gens[(k)*3:(k+1)*3])
+    matriz[i].append(fitness)
+    matriz[i][d] = fitness
+  return matriz
+
+# F3S
+def f3s(matriz,pop,d):
+  for i in range(pop):
+    fitness = 0.0
+    gens = []
+    gens = [j for j in matriz[i]]
+    for k in range(f3_size):
+      fitness += evalF3([gens[k],gens[k+f3_size], gens[k+2*f3_size]])
+    matriz[i].append(fitness)
+    matriz[i][d] = fitness
+  return matriz
+
+# Deceptive N
+def deceptiveN(matriz,pop,d):
+  for i in range(pop):
+    fitness = 0.0
+    gens = []
+    gens = [j for j in matriz[i]]
+    for k in range(deceptiveN_size):
+      v = sum(gens[(i-1)*deceptiveN_nbits+1:i*deceptiveN_nbits])
+      if v == 0:
+        fitness += deceptiveN_nbits+1
+      else:
+        fitness += v
+    matriz[i].append(fitness)
+    matriz[i][d] = fitness
+  return matriz  

@@ -9,6 +9,7 @@ import fitness as fit
 import mutation as mtt
 import variaveis as var
 import plotPram as pp
+import diversityManagement as dm
 import copy
 
 def printPopulacao(matriz, pop,d):
@@ -37,6 +38,10 @@ if  __name__ =='__main__':
   ce = 1.2
   inc = 0.8/var.generations
 
+  if var.genGap:
+    gGap = int((var.genGapPercent/100)*var.pop_size)
+    gapMat = []
+
   if var.problem == 1:
     objective = fit.bitsAlternados(initPop,var.pop_size,var.d_size)
   if var.problem == 2:
@@ -48,9 +53,20 @@ if  __name__ =='__main__':
   if var.problem == 5:
     objective = fit.pattern(initPop, var.pop_size, var.d_size)
   if var.problem == 6:
-    objective = fit.nQueens(initPop, var.pop_size, var.d_size)
+    objective = fit.nQueens(initPop, var.pop_size, var.d_size)  
+  if var.problem == 7:
+    objective = fit.f3(initPop, var.pop_size, var.d_size)  
+  if var.problem == 8:
+    objective = fit.f3s(initPop, var.pop_size, var.d_size)
+
 
   while var.generations:
+    if var.genGap:
+      gapMat = dm.getGap(objective,gGap,var.pop_size,var.d_size)
+
+    if var.share:
+      dm.sharing(objective,var.pop_size,var.d_size)
+
     if var.elitism:
       elected = ns.elit(objective,var.pop_size,var.d_size)
 
@@ -90,6 +106,9 @@ if  __name__ =='__main__':
           newGen.append(child1)
           newGen.append(child2)
 
+    if var.crowd:
+      place = placeholder
+
     for i in range(var.pop_size):
       for j in range(var.d_size):
         if mtt.mut():
@@ -107,6 +126,11 @@ if  __name__ =='__main__':
 
     newPopu = newPop(newGen,var.pop_size,var.d_size)
 
+    if var.genGap:
+      for i in range(gGap):
+        random.shuffle(newPopu)
+        newPopu[i] = gapMat[i]
+
     if var.elitism:
       randIndex = random.randint(0,(var.d_size-1))
       newPopu[randIndex] = elected
@@ -123,7 +147,10 @@ if  __name__ =='__main__':
       objective = fit.pattern(newPopu, var.pop_size, var.d_size)
     if var.problem == 6:
       objective = fit.nQueens(newPopu, var.pop_size, var.d_size)
-
+    if var.problem == 7:
+      objective = fit.f3(newPopu, var.pop_size, var.d_size)    
+    if var.problem == 8:
+      objective = fit.f3s(newPopu, var.pop_size, var.d_size)
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))
