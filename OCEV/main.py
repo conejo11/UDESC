@@ -57,7 +57,9 @@ if  __name__ =='__main__':
   if var.problem == 7:
     objective = fit.f3(initPop, var.pop_size, var.d_size)  
   if var.problem == 8:
-    objective = fit.f3s(initPop, var.pop_size, var.d_size)
+    objective = fit.f3s(initPop, var.pop_size, var.d_size)  
+  if var.problem == 9:
+    objective = fit.deceptiveN(initPop, var.pop_size, var.d_size)
 
 
   while var.generations:
@@ -151,6 +153,8 @@ if  __name__ =='__main__':
       objective = fit.f3(newPopu, var.pop_size, var.d_size)    
     if var.problem == 8:
       objective = fit.f3s(newPopu, var.pop_size, var.d_size)
+    if var.problem == 9:
+      objective = fit.deceptiveN(newPopu, var.pop_size, var.d_size)
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))

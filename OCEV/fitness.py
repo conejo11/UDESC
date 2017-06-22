@@ -114,8 +114,8 @@ def nQueens(matriz,pop,d):
 
 # DECEPTIVE FUNCTIONS
 f3_size = 10
-deceptiveN_size = 20
-deceptiveN_nbits = 3
+deceptiveN_size = 16
+deceptiveN_nbits = 4
 
 def evalF3(vet):
   if   vet==[0,0,0]:
@@ -163,7 +163,7 @@ def deceptiveN(matriz,pop,d):
     gens = []
     gens = [j for j in matriz[i]]
     for k in range(deceptiveN_size):
-      v = sum(gens[(i-1)*deceptiveN_nbits+1:i*deceptiveN_nbits])
+      v = sum(gens[(k)*deceptiveN_nbits:(k+1)*deceptiveN_nbits])
       if v == 0:
         fitness += deceptiveN_nbits+1
       else:

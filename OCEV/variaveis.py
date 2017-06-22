@@ -1,10 +1,10 @@
 import random
 import math as mt
 
-generations = 500
+generations = 1000
 k = 2
-pop_size = 50
-d_size = 30
+pop_size = 64
+d_size = 64
 bounds = [-50,50]
 genGapPercent = 30
 
@@ -40,7 +40,8 @@ linearScaling = True
 # problem = 5
 # problem = 6
 # problem = 7
-problem = 8
+# problem = 8
+problem = 9
 
 
 # 1 = onePoint; 2 = Uniform; 3 = BLX; 4 = Average; 5 = PMX
