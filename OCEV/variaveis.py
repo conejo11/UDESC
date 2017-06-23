@@ -2,8 +2,8 @@ import random
 import math as mt
 
 generations = 1000
-k = 2
-pop_size = 64
+k = 5
+pop_size = 70
 d_size = 64
 bounds = [-50,50]
 genGapPercent = 30
@@ -38,27 +38,27 @@ linearScaling = True
 # problem = 3
 # problem = 4
 # problem = 5
-# problem = 6
+problem = 6
 # problem = 7
 # problem = 8
-problem = 9
+# problem = 9
 
 
 # 1 = onePoint; 2 = Uniform; 3 = BLX; 4 = Average; 5 = PMX
-cover = 1
+# cover = 1
 # cover = 2
 # cover = 3
 # cover = 4
-# cover = 5
+cover = 5
 
 # 1 = bitFlip; 2 = randMutation; 3 = deltaMutation; 4 = gaussianMutation; 5 = swapPositions
-mutar = 1
+# mutar = 1
 # mutar = 2
 # mutar = 3
 # mutar = 4
-# mutar = 5
+mutar = 5
 
 
-# cod = 0
+cod = 0
 # cod = 0.0
-cod = False
+# cod = False
