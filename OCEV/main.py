@@ -61,7 +61,6 @@ if  __name__ =='__main__':
   if var.problem == 9:
     objective = fit.deceptiveN(initPop, var.pop_size, var.d_size)
 
-
   while var.generations:
     if var.genGap:
       gapMat = dm.getGap(objective,gGap,var.pop_size,var.d_size)
@@ -158,6 +157,8 @@ if  __name__ =='__main__':
 
     bestFit.append(pp.getBest(objective,var.pop_size,var.d_size))
     averageFit.append(pp.averageInd(objective,var.pop_size,var.d_size))
+    vet = []
+    pp.averageAll(objective,var.pop_size,var.d_size,vet)
     if type(var.cod) is not float:
       divers.append(pp.diversityHam(objective,var.pop_size,var.d_size))
     else:
@@ -165,6 +166,9 @@ if  __name__ =='__main__':
     var.generations -= 1
 
   best = pp.bestInd(objective,var.pop_size,var.d_size)
+  mean = sum(vet)/len(vet)
+  std = mt.sqrt(1.0/len(vet)*sum([(vet[i]-mean)**2 for i in range(len(vet))]))
+  
   plt.plot(bestFit,label = 'Best')
   plt.plot(averageFit, label = 'Average')
   plt.legend()
@@ -180,3 +184,5 @@ if  __name__ =='__main__':
   plt.savefig("diversity.png")
 
   print(best)
+  print(mean)
+  print(std)

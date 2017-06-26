@@ -24,6 +24,14 @@ def averageInd(matriz,pop,d):
   som = som/d
   return som
 
+def averageAll(matriz,pop,d,vet):
+  som = 0
+  for i in range(pop):
+    vet.append(matriz[i][d])
+  return vet
+
+
+
 def bestInd(matriz,pop,d):
   submat = []
   individual = []
