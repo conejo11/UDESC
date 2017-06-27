@@ -2,7 +2,7 @@ import random
 import math as mt
 
 generations = 1000
-k = 2
+k = 5
 pop_size = 50
 d_size = 30
 bounds = [-50,50]
@@ -20,8 +20,8 @@ selection = 2
 genGap = False
 
 # Fitness Sharing
-share = True
-# share = False
+# share = True
+share = False
 
 # Crowding Factor
 # crowd = True

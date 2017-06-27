@@ -107,9 +107,6 @@ if  __name__ =='__main__':
           newGen.append(child1)
           newGen.append(child2)
 
-    if var.crowd:
-      place = placeholder
-
     for i in range(var.pop_size):
       for j in range(var.d_size):
         if mtt.mut():
@@ -132,6 +129,30 @@ if  __name__ =='__main__':
         random.shuffle(newPopu)
         newPopu[i] = gapMat[i]
 
+    if var.crowd:
+      if var.problem == 1:
+        objective = fit.bitsAlternados(newPopu,var.pop_size,var.d_size)
+      if var.problem == 2:
+        objective = fit.paresAlternados(newPopu,var.pop_size,var.d_size)
+      if var.problem == 3:
+        objective = fit.sphere(newPopu, var.pop_size, var.d_size)
+      if var.problem == 4:
+        objective = fit.radio(newPopu, var.pop_size, var.d_size)
+      if var.problem == 5:
+        objective = fit.pattern(newPopu, var.pop_size, var.d_size)
+      if var.problem == 6:
+        objective = fit.nQueens(newPopu, var.pop_size, var.d_size)
+      if var.problem == 7:
+        objective = fit.f3(newPopu, var.pop_size, var.d_size)    
+      if var.problem == 8:
+        objective = fit.f3s(newPopu, var.pop_size, var.d_size)
+      if var.problem == 9:
+        objective = fit.deceptiveN(newPopu, var.pop_size, var.d_size)
+      dm.crowding(objective, newPopu, var.pop_size,var.d_size)
+
+    if var.crowd:
+      nowPopu = newPop(newPopu,var.pop_size,var.d_size)
+      
     if var.elitism:
       randIndex = random.randint(0,(var.d_size-1))
       newPopu[randIndex] = elected
