@@ -29,24 +29,24 @@
 # import numpy as np
 import math as mt
 
-# Comente a função que não irá utilizar, tire o comentário da função que irá utilizar
+# Comente a função que não irá utilizar, tire o comentário da função que irá utilizar '1 = f1' e '2 = f2'
 # Atalho para comentar/descomentar mais rápido, vá até a linha a ser comentada e pressione 'ctrl+/' (Apenas alguns editores possuem essa funcao)
 funcao = 1
 # funcao = 2
 
-# Funcao 5 (Bruna Tavares na chamada)
+# Funcao 5 da lista (Bruna Tavares na chamada)
 def f1(x):
     return (2 ** mt.cos(x)) - (x/2)
 
-# Derivada da funcao 5 (Bruna Tavares na chamada)
+# Derivada da funcao 5 da lista (Bruna Tavares na chamada)
 def df1(x):
     return (mt.log(2,10)*mt.sin(x)*(-2**mt.cos(x))) - (1/2)
 
-# Funcao 11 (Gabriel Conejo na chamada)
+# Funcao 11 da lista (Gabriel Conejo na chamada)
 def f2(x):
     return (4*x) - (mt.sqrt(mt.e**x))
 
-# Derivada da funcao 11 (Gabriel Conejo na chamada)
+# Derivada da funcao 11 da lista (Gabriel Conejo na chamada)
 def df2(x):
     return 4 - ((mt.sqrt(mt.e**x))/2)
 
