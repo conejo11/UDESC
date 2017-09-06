@@ -57,25 +57,25 @@ def newton(func,deriv,xk,error):
         while error < newError:
             xk = xk - f1(xk)/df1(xk)
             newError = abs(0-f1(xk))
-        print ('Xk = ', xk)
-        print ('f(x) = ', f1(xk))
         return xk
     else:
         newError = abs(0-f1(xk))
         while error < newError:
             xk = xk - f2(xk)/df2(xk)
             newError = abs(0-f2(xk))
-        print ('Xk = ', xk)
-        print ('f(x) = ', f2(xk))
         return xk
 
 def main():
     xk = 0
     error = 1e-5
     if funcao == 1:
-        newton(f1,df1,xk,error)
+        xn = newton(f1,df1,xk,error)
+        print ('Xk resultante = ', xn)
+        print ('f1(x) resultante = ', f1(xn))
     else:
-        newton(f2,df2,xk,error)
+        xn = newton(f2,df2,xk,error)
+        print ('Xk resultante = ', xn)
+        print ('f2(x) resultante = ', f2(xn))
 
 if __name__ == '__main__':
     main()
