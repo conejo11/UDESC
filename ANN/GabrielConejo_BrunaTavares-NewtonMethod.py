@@ -68,43 +68,37 @@ def ddf2(x):
 
 # Verificação do critério de convergência Newton
 def convergeNewton(func,deriv, segDeriv, xk):
-    ncvg = -1 # nao garante a convergencia
+    result = -1 # -1 nao garante a convergencia; 1 garante convergencia
     if funcao == 1:
+        print ('parou no 1 criterio')
         (a, b) = intervalo(f1, df1, xk)
-        # primeiro criterio: raiz de f no intervalo [a, b]
-        if f1(a)*f1(b) > 0 :
-            print ('parou no 1 criterio')
-            return ncvg
-        # segundo critério: f'(x) != 0 | x E [a, b]
-        if anulaDf1() == a:
+        # primeiro criterio: f(a) * f1(b) < 0 (converge)
+        if f1(a)*f1(b) < 0 :
             print ('parou no 2 criterio')
-            return ncvg
-        if anulaDf1() == b:
-            print ('parou no 2b criterio')
-            return ncvg
-        if anulaDf1() > a:
-            print ('parou no 2c criterio')
-            return ncvg
-        if anulaDf1() < b:
-            print ('parou no 2d criterio')
-            return ncvg
-        # terceiro critério: f"(a) * f"(b) > 0
-        if ddf1(a)*ddf1(b) == 0:
-            print ('parou no 3a criterio')
-            return ncvg
-        if ddf1(a)*ddf1(b) > 0:
-            print ('parou no 3b criterio')
-            return ncvg
-        # quarto critério: x0 é a ou b | f(x0)*f"(x0) > 0
+            # segundo critério: f'(a) * f1(b) > 0   
+            if df1(a)*df1(b) > 0:
+                # terceiro critério: f"(a) * f"(b) > 0
+                print ('parou no 3 criterio')
+                if ddf1(a)*ddf1(b) > 0:
+                    result = 1
+                else:
+                    print ('teste a: ', a, ' b: ', b, 'f(a): ', f1(a), ' f(b): ', f1(b), '\nf\'\'(a): ', ddf1(a), ' f\'\'(b): ', ddf1(b))
+    if funcao == 2:
+        (a, b) = intervalo(f2, df2, xk)
+        # primeiro criterio: f(a) * f1(b) < 0 (converge)
+        print ('parou no 0 criterio')
+        if f2(a)*f2(b) < 0 :
+            print ('parou no 1 criterio')
+            # segundo critério: f'(a) * f1(b) > 0   
+            if df2(a)*df2(b) > 0:
+                print ('parou no 2 criterio')
+                # terceiro critério: f"(a) * f"(b) > 0
+                if ddf2(a)*ddf2(b) > 0:
+                    print ('parou no 3 criterio')
+                    result = 1
 
-        if func(a)*ddf1(a) > 0:
-            return a
-        else:
-            if func(b)*ddf1(b) > 0:
-                return b
-            else:
-                print ('parou no 4 criterio func(b): ', func(b), ' ddf1(b): ', ddf1(b))
-                return ncvg
+    return result
+
 # fazer as mesmas coisas para a funcao b, só trocando td pelos respectivos da f2
 
 # Define intervalo (a, b)
@@ -118,7 +112,7 @@ def intervalo(func, deriv, xk):
     if b > a:
         return (a, b)
     else:
-        return (a, b)
+        return (b, a)
 
 # Metodo de Newton
 def newton(func,deriv,xk,error):
@@ -129,16 +123,40 @@ def newton(func,deriv,xk,error):
             xk = xk - f1(xk)/df1(xk)
             newError = abs(0-f1(xk))
             it += 1
-        print ('Iteracoes: ', it)
-        return xk
     else:
-        newError = abs(0-f1(xk))
+        newError = abs(0-f2(xk))
         while error < newError:
             xk = xk - f2(xk)/df2(xk)
             newError = abs(0-f2(xk))
             it += 1
-        print ('Iteracoes: ', it)
-        return xk
+    
+    print ('Iteracoes: ', it)
+    return xk
+
+# Metodo da Secante
+def secante(func, x0, xk, error):
+    it = 0
+    xk_me1 = x0
+    aux = 0
+    if funcao == 1:
+        newError = abs(0-f1(xk))
+        while error < newError:
+            aux = xk
+            xk = xk - ((xk - xk_me1)*f1(xk))/(f1(xk) - f1(xk_me1))
+            xk_me1 = aux
+            newError = abs(0-f1(xk))
+            it += 1
+    else:
+        newError = abs(0-f2(xk))
+        while error < newError:
+            aux = xk
+            xk = xk - ((xk - xk_me1)*f2(xk))/(f2(xk) - f2(xk_me1))
+            xk_me1 = aux
+            newError = abs(0-f2(xk))
+            it += 1
+
+    print ('Iteracoes: ', it)
+    return xk
 
 def main():
     xk = 0
@@ -148,10 +166,10 @@ def main():
         result = convergeNewton(f1, df1, ddf1, xk)
         if result == -1:
             print ('Nao atende aos criterios de convergencia')
-        else:
-            xn = newton(f1,df1,xk,error)
-            print ('Xk resultante = ', xn)
-            print ('f1(x) resultante = ', f1(xn))
+        xn = newton(f1,df1,xk,error)
+        print ('Xk resultante = ', xn)
+        print ('f1(x) resultante = ', f1(xn))
+            
     else:
         xn = newton(f2,df2,xk,error)
         print ('Xk resultante = ', xn)
