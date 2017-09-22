@@ -31,8 +31,8 @@ import math as mt
 
 # Comente a função que não irá utilizar, tire o comentário da função que irá utilizar '1 = f1' e '2 = f2'
 # Atalho para comentar/descomentar mais rápido, vá até a linha a ser comentada e pressione 'ctrl+/' (Apenas alguns editores possuem essa funcao)
-funcao = 1
-# funcao = 2
+# funcao = 1
+funcao = 2
 
 # Funcao 5 da lista (Bruna Tavares na chamada)
 def f1(x):
@@ -74,11 +74,13 @@ def main():
     error = 1e-5
     if funcao == 1:
         xn = secante(f1, x0, xk, error)
+        print ('Funcao 1: f(x) = 2^(cos(x))-x/2')
         print ('Xk resultante = ', xn)
         print ('f1(x) resultante = ', f1(xn))
             
     else:
         xn = secante(f2, x0, xk, error)
+        print ('Funcao 2: f(x) = 4*x - sqrt(e^x)')
         print ('Xk resultante = ', xn)
         print ('f1(x) resultante = ', f2(xn))
 
