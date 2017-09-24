@@ -29,9 +29,10 @@
 # import numpy as np
 import math as mt
 
-
-# Caso queira colocar mais opcoes de funcao da pra ir colocando sem apagar as outras
-funcao = 1
+# Comente a função que não irá utilizar, tire o comentário da função que irá utilizar '1 = f1' e '2 = f2'
+# Atalho para comentar/descomentar mais rápido, vá até a linha a ser comentada e pressione 'ctrl+/' (Apenas alguns editores possuem essa funcao)
+# funcao = 1
+funcao = 2
 
 # Funcao 5 da lista (Bruna Tavares na chamada)
 def f1(x):
@@ -49,24 +50,52 @@ def ddf1(x):
 def anulaDf1():
     return (1.75797380969997)
 
+# Funcao 11 da lista (Gabriel Conejo na chamada)
+def f2(x):
+    return (4*x) - (mt.sqrt(mt.e**x))
+
+# Derivada da funcao 11 da lista (Gabriel Conejo na chamada)
+def df2(x):
+    return 4 - ((mt.sqrt(mt.e**x))/2)
+
+# onde df2 = 0
+def anulaDf2():
+    return ((mt.e**(x**2))/8)
+
+# Segunda Derivada da funcao 11 da lista (Gabriel Conejo na chamada)
+def ddf2(x):
+    return - ((mt.sqrt(mt.e**x))/8)
+
 # Verificação do critério de convergência Newton
 def convergeNewton(func,deriv, segDeriv, xk):
     result = -1 # -1 nao garante a convergencia; 1 garante convergencia
     if funcao == 1:
-        print ('passou no 1 criterio')
+        print ('parou no 1 criterio')
         (a, b) = intervalo(f1, df1, xk)
         # primeiro criterio: f(a) * f1(b) < 0 (converge)
-        if f1(a)*f1(b) <= 0 :
-            print ('passou no 2 criterio')
+        if f1(a)*f1(b) < 0 :
+            print ('parou no 2 criterio')
             # segundo critério: f'(a) * f1(b) > 0   
-            if df1(xk) != 0:
+            if df1(a)*df1(b) > 0:
                 # terceiro critério: f"(a) * f"(b) > 0
-                print ('passou no 3 criterio')
-                if ddf1(xk) > 0 or ddf1(xk) < 0:
-                    if ((abs(f1(a)/df1(a)) < abs(a-b)) and (abs(f1(a)/df1(a)) < abs(a-b))) or ((f1(x0)*ddf1(xk)) >=0):
-                        result = 1
+                print ('parou no 3 criterio')
+                if ddf1(a)*ddf1(b) > 0:
+                    result = 1
                 else:
                     print ('teste a: ', a, ' b: ', b, 'f(a): ', f1(a), ' f(b): ', f1(b), '\nf\'\'(a): ', ddf1(a), ' f\'\'(b): ', ddf1(b))
+    if funcao == 2:
+        (a, b) = intervalo(f2, df2, xk)
+        # primeiro criterio: f(a) * f1(b) < 0 (converge)
+        print ('parou no 0 criterio')
+        if f2(a)*f2(b) < 0 :
+            print ('parou no 1 criterio')
+            # segundo critério: f'(a) * f1(b) > 0   
+            if df2(a)*df2(b) > 0:
+                print ('parou no 2 criterio')
+                # terceiro critério: f"(a) * f"(b) > 0
+                if ddf2(a)*ddf2(b) > 0:
+                    print ('parou no 3 criterio')
+                    result = 1
     return result
 
 # Define intervalo (a, b)
@@ -74,6 +103,9 @@ def intervalo(func, deriv, xk):
     if funcao == 1:
         a = xk - f1(xk)/df1(xk)
         b = a - f1(a)/df1(a)
+    else:
+        a = xk - f2(xk)/df1(xk)
+        b = a - f2(a)/df1(a)
     if b > a:
         return (a, b)
     else:
@@ -85,20 +117,18 @@ def newton(func,deriv,xk,error):
     if funcao == 1:
         newError = abs(0-f1(xk))
         while error < newError:
-            aux = xk
             xk = xk - f1(xk)/df1(xk)
-            newError = abs(aux-xk)
+            newError = abs(0-f1(xk))
             it += 1
-            print('Iteracao = ', it)
-            print('Xk = ', xk)
-            print('f(Xk) = ', f1(xk))
-            print('Erro = ', newError)
-            print(' ')
-    print(' ---------------------------------------- ')
-    print(' ---------------------------------------- ')
-    print('RESULTADO FINAL')
+    else:
+        newError = abs(0-f2(xk))
+        while error < newError:
+            xk = xk - f2(xk)/df2(xk)
+            newError = abs(0-f2(xk))
+            it += 1
+    
     print ('Iteracoes: ', it)
-    return xk, newError
+    return xk
 
 def main():
     xk = 0
@@ -109,15 +139,20 @@ def main():
         result = convergeNewton(f1, df1, ddf1, xk)
         if result == -1:
             print ('Nao atende aos criterios de convergencia\n')
-            pass
-        xn, erro = newton(f1,df1,xk,error)
-        print('RESULTADO FINAL')
+        xn = newton(f1,df1,xk,error)
         print ('Funcao 1: f(x) = 2^(cos(x))-x/2')
         print ('Xk resultante = ', xn)
         print ('f1(x) resultante = ', f1(xn))
-        print ('Erro resultante = ', erro)
-        print(' ---------------------------------------- ')
-        print(' ---------------------------------------- ')
+            
+    else:
+        #verifica criterio convergencia
+        result = convergeNewton(f1, df1, ddf1, xk)
+        if result == -1:
+            print ('Nao atende aos criterios de convergencia\n')
+        xn = newton(f2,df2,xk,error)
+        print ('Funcao 2: f(x) = 4*x - sqrt(e^x)')
+        print ('Xk resultante = ', xn)
+        print ('f2(x) resultante = ', f2(xn))
 
 if __name__ == '__main__':
     main()
