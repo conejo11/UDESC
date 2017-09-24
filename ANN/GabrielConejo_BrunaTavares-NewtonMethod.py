@@ -111,7 +111,6 @@ def main():
             print ('Nao atende aos criterios de convergencia\n')
             pass
         xn, erro = newton(f1,df1,xk,error)
-        print('RESULTADO FINAL')
         print ('Funcao 1: f(x) = 2^(cos(x))-x/2')
         print ('Xk resultante = ', xn)
         print ('f1(x) resultante = ', f1(xn))
