@@ -1,3 +1,4 @@
+
     # This program is free software: you can redistribute it and/or modify
     # it under the terms of the GNU General Public License as published by
     # the Free Software Foundation, either version 3 of the License, or
@@ -25,61 +26,61 @@
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
 
-
-# UTILIZE PYTHON 3 PARA INTERPRETAR ESTE CODIGO
-
-
-# -*- coding: cp1252 -*-
-# import numpy as np
 import math as mt
 
-# Comente a função que não irá utilizar, tire o comentário da função que irá utilizar '1 = f1' e '2 = f2'
-# Atalho para comentar/descomentar mais rápido, vá até a linha a ser comentada e pressione 'ctrl+/' (Apenas alguns editores possuem essa funcao)
-funcao = 1
-# funcao = 2
+def f1(x,y):
+    return (mt.sin(x-y) - y)/8
 
-# Funcao 5 da lista (Bruna Tavares na chamada)
-def f1(x):
-    return (2 ** mt.cos(x)) - (x/2)
+def f2(x,y):
+    return (x - mt.cos(x*y))/8
 
-# Derivada da funcao 5 da lista (Bruna Tavares na chamada)
-def df1(x):
-    return (mt.log(2,10)*mt.sin(x)*(-2**mt.cos(x))) - (1/2)
-
-# Funcao 11 da lista (Gabriel Conejo na chamada)
-def f2(x):
-    return (4*x) - (mt.sqrt(mt.e**x))
-
-# Derivada da funcao 11 da lista (Gabriel Conejo na chamada)
-def df2(x):
-    return 4 - ((mt.sqrt(mt.e**x))/2)
-
-# Metodo de Newton
-def newton(func,deriv,xk,error):
-    if funcao == 1:
-        newError = abs(0-f1(xk))
-        while error < newError:
-            xk = xk - f1(xk)/df1(xk)
-            newError = abs(0-f1(xk))
-        return xk
-    else:
-        newError = abs(0-f1(xk))
-        while error < newError:
-            xk = xk - f2(xk)/df2(xk)
-            newError = abs(0-f2(xk))
-        return xk
-
-def main():
-    xk = 0 # Ponto inicial escolhido
-    error = 1e-5
-    if funcao == 1:
-        xn = newton(f1,df1,xk,error)
-        print ('Xk resultante = ', xn)
-        print ('f1(x) resultante = ', f1(xn))
-    else:
-        xn = newton(f2,df2,xk,error)
-        print ('Xk resultante = ', xn)
-        print ('f2(x) resultante = ', f2(xn))
+def ptoFixo(f1,f2,x,y,xk,yk,erro):
+    it = 0
+    print('Iteracao = ', it)
+    print('X1k = ', x)
+    print('X2k = ', y)
+    print('f(X1k,X2k) = ', f1(x,y))
+    print(' ')
+    xk = f1(x,y)
+    yk = f2(x,y)
+    newErro = max(abs(xk-x),abs(yk-y))/max(abs(xk),abs(yk))
+    print('Iteracao = ', it+1)
+    print('X1k = ', xk)
+    print('X2k = ', yk)
+    print('f(X1k,X2k) = ', f1(xk,yk))
+    print('Erro = ', newErro)
+    print(' ')
+    while newErro > erro:
+        aux1 = xk
+        aux2 = yk
+        xk = f1(xk,yk)
+        yk = f2(xk,yk)
+        newErro = max(abs(xk-aux1),abs(yk-aux2))/max(abs(xk),abs(yk))
+        it += 1
+        print('Iteracao = ', it+1)
+        print('X1k = ', xk)
+        print('X2k = ', yk)
+        print('f(X1k,X2k) = ', f1(xk,yk))
+        print('Erro = ', newErro)
+        print(' ')
+    return xk, yk, newErro, it
 
 if __name__ == '__main__':
-    main()
+    erro = 0.000001
+    x0 = 1
+    y0 = 1
+    xk = 0
+    yk = 0
+
+    xn,yn,erroFin, it = ptoFixo(f1,f2,x0,y0,xk,yk,erro)
+    print(' ')
+    print(' ---------------------------------------- ')
+    print(' ---------------------------------------- ')
+    print ('X1k resultante = ', xn)
+    print ('X2k resultante = ', yn)
+    print ('f1(x1,x2) resultante = ', f1(xn,yn))
+    print ('f2(x1,x2) resultante = ', f2(xn,yn))
+    print ('Erro resultante = ', erroFin)
+    print ('Iteracoes = ', it+1)
+    print(' ---------------------------------------- ')
+    print(' ---------------------------------------- ')
