@@ -25,17 +25,13 @@
 # -------------------------------------------------------------------------------- #
 # -------------------------------------------------------------------------------- #
 
-
-# UTILIZE PYTHON 3 PARA INTERPRETAR ESTE CODIGO
-
-
 # -*- coding: cp1252 -*-
 # import numpy as np
 import math as mt
 
-
 # Caso queira colocar mais opcoes de funcao da pra ir colocando sem apagar as outras
 funcao = 1
+
 
 # Funcao 5 da lista (Bruna Tavares na chamada)
 def f1(x):
@@ -82,15 +78,17 @@ def intervalo(func, deriv, xk):
         return (a, b)
     else:
         return (b, a)
-
-# Metodo de Newton
-def newton(func,deriv,xk,error):
+# Metodo da Secante
+def secante(func, x0, xk, error):
     it = 0
+    xk_me1 = x0
+    aux = 0
     if funcao == 1:
         newError = abs(0-f1(xk))
         while error < newError:
             aux = xk
-            xk = xk - f1(xk)/df1(xk)
+            xk = xk - ((xk - xk_me1)*f1(xk))/(f1(xk) - f1(xk_me1))
+            xk_me1 = aux
             newError = abs(aux-xk)
             it += 1
             print('Iteracao = ', it)
@@ -105,20 +103,15 @@ def newton(func,deriv,xk,error):
     return xk, newError
 
 def main():
-<<<<<<< HEAD
-    xk = 0 # Ponto inicial escolhido
-=======
     xk = 0
     x0 = 1
->>>>>>> 65433a747b569a855793e6fd97741680cfa187ee
     error = 1e-5
     if funcao == 1:
-        #verifica criterio convergencia
         result = convergeNewton(f1, df1, ddf1, xk)
         if result == -1:
             print ('Nao atende aos criterios de convergencia\n')
             pass
-        xn, erro = newton(f1,df1,xk,error)
+        xn, erro = secante(f1, x0, xk, error)
         print ('Funcao 1: f(x) = 2^(cos(x))-x/2')
         print ('Xk resultante = ', xn)
         print ('f1(x) resultante = ', f1(xn))
